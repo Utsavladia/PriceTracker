@@ -7,6 +7,10 @@ import { scraper } from "../../../../lib/scraper";
 import { getAveragePrice, getEmailNotifType, getHighestPrice, getLowestPrice } from "../../../../lib/utils";
 
 
+export const maxDuration = 300;
+export const dynamic = 'force-dynamic'
+export const revalidate = 0;
+
 
 export async function GET() {
     try {
@@ -39,7 +43,7 @@ export async function GET() {
         
              //  this will store the updated product in the database of Mongoose
             const updatedProduct = await Product.findOneAndUpdate(
-                { url: scrapedProduct.url },
+                { url: product.url },
                 product,
                 );
                 
