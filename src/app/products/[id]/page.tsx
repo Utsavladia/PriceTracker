@@ -64,7 +64,7 @@ async function ProductDetails({ params: { id } }: Props) {
             {Product.lowestPrice}
           </div>{" "}
         </div>
-        <Track />
+        <Track productId={id} />
 
         <div className="ml-2 border-t-2 opacity-80 text-sm mt-12 ">
           <p className="text-lg font-bold mb-4 mt-4">About the Product</p>

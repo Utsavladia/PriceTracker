@@ -1,7 +1,12 @@
 "use client";
 import React, { FormEvent, MouseEvent, useState } from "react";
+import { addUserEamilToProduct } from "../../../lib/actions";
 
-const Track = () => {
+interface Props {
+  productId: string;
+}
+
+const Track = ({ productId }: Props) => {
   const [email, setemail] = useState("");
   const [isPanelVisible, setisPanelVisible] = useState(false);
   const [isSubmitting, setisSubmitting] = useState(false);
@@ -15,7 +20,7 @@ const Track = () => {
   const handleTrack = async (e: FormEvent<HTMLFormElement>) => {
     setisSubmitting(true);
     e.preventDefault();
-    //await addUserEamilToProduct(productId, email);
+    await addUserEamilToProduct(productId, email);
 
     setisSubmitting(false);
     setemail("");
