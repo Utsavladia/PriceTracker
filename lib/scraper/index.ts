@@ -64,7 +64,7 @@ export async function scraper(productUrl: string) {
             stars: 4.5,
             isOutOfStock: outOfStock,
             description,
-            discountRate,
+            discountRate : Number(discountRate),
             lowestPrice: Number(currentprice) || Number(originalPrice),
             highestPrice: Number(originalPrice) || Number(currentprice),
             averagePrice: Number(currentprice)|| Number(originalPrice),
