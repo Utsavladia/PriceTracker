@@ -27,24 +27,24 @@ export async function GET() {
 
 
 
-                 const updatedPriceHistory = [
-                ...currentProduct.priceHistory,
-                {price: scrapedProduct.currentPrice}
-            ]
+                const updatedPriceHistory = [
+                    ...currentProduct.priceHistory,
+                    { price: scrapedProduct.currentPrice }
+                ]
 
-            const product = {
-                ...scrapedProduct,
-                priceHistory: updatedPriceHistory,
-                lowestPrice: getLowestPrice(updatedPriceHistory),
-                highestPrice: getHighestPrice(updatedPriceHistory),
-                averagePrice: getAveragePrice(updatedPriceHistory),
+                const product = {
+                    ...scrapedProduct,
+                    priceHistory: updatedPriceHistory,
+                    lowestPrice: getLowestPrice(updatedPriceHistory),
+                    highestPrice: getHighestPrice(updatedPriceHistory),
+                    averagePrice: getAveragePrice(updatedPriceHistory),
 
-            }
+                }
         
-             //  this will store the updated product in the database of Mongoose
-            const updatedProduct = await Product.findOneAndUpdate(
-                { url: product.url },
-                product,
+                //  this will store the updated product in the database of Mongoose
+                const updatedProduct = await Product.findOneAndUpdate(
+                    { url: product.url },
+                    product,
                 );
                 
                 // Check each product status and send email accordingly to users
@@ -62,16 +62,15 @@ export async function GET() {
                     await sendEmail(emailContent, userEmails);
                  
                 }
-                   return updatedProduct
+                return updatedProduct;
                 
 
             })
-
-        )
+        );
         
         return NextResponse.json({
-            message: 'Ok', data: updatedProducts
-        })
+            message: 'Ok', data: updatedProducts,
+        });
 
     } catch (error) {
         console.log(error);
