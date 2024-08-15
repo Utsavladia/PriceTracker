@@ -10,11 +10,11 @@ import { generateEmailBody, sendEmail } from "../nodemailer";
 
 export async function scrapeAndStore(productUrl: string) {
     
-    if (!productUrl) return;
+    if (!productUrl) return null;
     try {
         connectDB();
         const scrapedProduct = await scraper(productUrl);
-        if (!scrapedProduct) return;
+        if (!scrapedProduct) return  null;
 
         let product = scrapedProduct;
         const existingProduct = await Product.findOne({ url: scrapedProduct.url })
@@ -32,6 +32,7 @@ export async function scrapeAndStore(productUrl: string) {
                 averagePrice: getAveragePrice(updatedPriceHistory),
 
             }
+            return existingProduct;
         }
 //  this will store the updated product in the database of Mongoose
         const newProduct = await Product.findOneAndUpdate(
@@ -39,14 +40,16 @@ export async function scrapeAndStore(productUrl: string) {
             product,
             { upsert: true, new: true },
         );
-
-        // in next.js we need to revalidate the page when changed
         revalidatePath(`/products/${newProduct._id}`);
+        console.log("redirect called with product_id ", newProduct._id);
+        return newProduct;        
 
     }
     catch (error: any) {
         throw new Error(`The error we got is: ${error.message}`)
     }
+
+    
 
     
 }

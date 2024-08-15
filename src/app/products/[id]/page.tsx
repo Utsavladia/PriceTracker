@@ -3,6 +3,7 @@ import React from "react";
 import { getProductById } from "../../../../lib/actions";
 import { redirect } from "next/navigation";
 import Track from "@/app/Components/Track";
+import "../../styles.css";
 
 type Props = {
   params: { id: string };
@@ -13,17 +14,15 @@ async function ProductDetails({ params: { id } }: Props) {
   if (!Product) redirect("/");
 
   return (
-    <div className=" flex gap-1 w-full pt-6 px-6 pb-4 lg:pt-24 lg:px-16">
-      <div className="w-1/2  max-h-[90vh] rounded-xl overflow-hidden">
-        <Image
+    <div className=" flex flex-col md:flex-row gap-1 w-full pt-6 px-6 pb-4 lg:pt-8 lg:px-16 md:pb-24">
+      <div className="md:w-1/2 w-full h-[90vh]  max-h-[90vh] rounded-xl overflow-hidden slide-in-left">
+        <img
           src={Product.image}
           alt={Product.title}
-          width={700}
-          height={700}
-          style={{ objectFit: "contain" }}
+          className=" object-cover w-full h-full "
         />
       </div>
-      <div className="w-1/2 bg-white max-h-[90vh]  rounded-xl overflow-auto text-black p-4 flex flex-col  ">
+      <div className="md:w-1/2 w-full bg-white max-h-[90vh]  slide-in-right rounded-xl overflow-auto text-black p-4 flex flex-col  ">
         <h1 className="text-xl font-bold mt-4 ml-2 border-b-2 pb-4">
           {Product.title}
           <br />
@@ -43,22 +42,22 @@ async function ProductDetails({ params: { id } }: Props) {
           </span>
         </div>
         <div className="flex flex-wrap gap-5 mt-8 mb-8 p-2">
-          <div className="border-2 shadow-lg bg-orange-400 border-orange-500 w-1/3 h-auto p-4 text-center font-semibold rounded-lg">
+          <div className="border-2 shadow-lg bg-orange-400 border-orange-500 md:w-1/3 w-1/2 h-auto p-4 text-center font-semibold rounded-lg">
             <p className="mb-2   text-md">Current Price</p>
             {Product.currency}
             {Product.currentPrice}
           </div>
-          <div className=" bg-red-500  shadow-lg w-1/3 h-auto p-4 text-center font-semibold rounded-lg">
+          <div className=" bg-red-500  shadow-lg md:w-1/3 w-1/2 h-auto p-4 text-center font-semibold rounded-lg">
             <p className="mb-2 text-md ">Highest Price</p>
             {Product.currency}
             {Product.highestPrice}
           </div>{" "}
-          <div className="border-2 shadow-lg border-orange-500 w-1/3 h-auto p-4 text-center font-semibold rounded-lg">
+          <div className="border-2 shadow-lg border-orange-500 md:w-1/3 w-1/2 h-auto p-4 text-center font-semibold rounded-lg">
             <p className="mb-2  text-md">Average Price</p>
             {Product.currency}
             {Product.averagePrice}
           </div>{" "}
-          <div className="border-2  shadow-lg   bg-green-500 w-1/3 h-auto p-4 text-center font-semibold rounded-lg">
+          <div className="border-2  shadow-lg   bg-green-500 md:w-1/3 w-1/2 h-auto p-4 text-center font-semibold rounded-lg">
             <p className="mb-2 text-md ">Lowest Price</p>
             {Product.currency}
             {Product.lowestPrice}

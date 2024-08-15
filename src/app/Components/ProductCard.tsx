@@ -10,13 +10,11 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
   return (
     <Link href={`/products/${product._id}`}>
-      <div className=" w-64 overflow-hidden min-h-96 flex flex-col border-2 border-orange-700 rounded-2xl shadow-lg shadow-orange-400">
-        <Image
+      <div className=" overflow-hidden h-96 flex flex-col border-2 border-orange-600 rounded-2xl hover:shadow-lg hover:shadow-orange-400 transition-all duration-300 ease-in-out">
+        <img
           src={product.image}
           alt={product.title}
-          width={260}
-          height={200}
-          className=""
+          className="w-full h-2/3 overflow-hidden hover:scale-110 transition-all duration-300 ease-in-out object-cover"
         />
         <div className="text-black p-2 bg-white flex-1 flex-col">
           <span className=" text-md overflow-hidden line-clamp-2">
