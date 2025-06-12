@@ -15,7 +15,7 @@ const Home = async () => {
           <div className="p-8 md:pt-36 pt-12 min-h-screen flex-col justify-start text-center z-10 relative">
             <div className="slide-in-top">
               <h2 className="text-2xl  md:text-4xl font-bold">
-                <span className="text-3xl md:text-5xl">
+                <span className="text-3xl md:text-5xl text-white">
                   Track the <span className=" text-orange-500">Price</span>
                 </span>{" "}
                 <br></br>
